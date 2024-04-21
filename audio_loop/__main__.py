@@ -1,12 +1,9 @@
 """Play an audio file in a loop with pygame."""
 import pygame
 import os
+import fire
 
-
-AUDIO_FILE = "data/test.wav"
-# AUDIO_FILE = "data/wnl-5s.wav"
-
-def main():
+def audio_loop(audio_path: str):
     pygame.init()
 
     # Set the desired volume (0.0 to 1.0)
@@ -14,7 +11,7 @@ def main():
     paused = False
 
     # Load the WAV file
-    sound = pygame.mixer.Sound(AUDIO_FILE)
+    sound = pygame.mixer.Sound(audio_path)
     sound.set_volume(volume)
 
     # Start playing the WAV file
@@ -44,5 +41,5 @@ def main():
                     # Quit the script
                     pygame.quit()
                     os._exit(0)
-if __name__ == "__main__":
-    main()
+def main():
+    fire.Fire(audio_loop)

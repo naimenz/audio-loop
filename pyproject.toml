@@ -9,8 +9,12 @@ packages = [{include = "audio_loop"}]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
 pygame = "^2.5.2"
+fire = "^0.6.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+audio-loop = "audio_loop.__main__:main"
