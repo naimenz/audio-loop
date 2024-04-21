@@ -1,16 +1,48 @@
-"""Play an audio file in a loop with pyaudio."""
+"""Play an audio file in a loop with pygame."""
 import pygame
+import os
 
 
 AUDIO_FILE = "data/test.wav"
 # AUDIO_FILE = "data/wnl-5s.wav"
+
 def main():
     pygame.init()
 
-    sound = pygame.mixer.Sound(AUDIO_FILE)
-    while True:
-        sound.play()
-        pygame.time.wait(int(sound.get_length() * 1000))
+    # Set the desired volume (0.0 to 1.0)
+    volume = 0.5
+    paused = False
 
+    # Load the WAV file
+    sound = pygame.mixer.Sound(AUDIO_FILE)
+    sound.set_volume(volume)
+
+    # Start playing the WAV file
+    sound.play(-1)  # -1 means loop indefinitely
+
+    while True:
+        # Check for user input
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    # Increase volume
+                    volume = min(volume + 0.1, 1.0)
+                    sound.set_volume(volume)
+                elif event.key == pygame.K_DOWN:
+                    # Decrease volume
+                    volume = max(volume - 0.1, 0.0)
+                    sound.set_volume(volume)
+                elif event.key == pygame.K_SPACE:
+                    # Toggle pause/play
+                    if paused:
+                        pygame.mixer.unpause()
+                        paused = False
+                    else:
+                        pygame.mixer.pause()
+                        paused = True
+                elif event.key == pygame.K_q:
+                    # Quit the script
+                    pygame.quit()
+                    os._exit(0)
 if __name__ == "__main__":
     main()
