@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "audio-loop"
+version = "0.1.0"
+description = ""
+authors = ["Ian McKenzie <ianmck98@gmail.com>"]
+readme = "README.md"
+packages = [{include = "audio_loop"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+pyaudio = "^0.2.14"
+pymusiclooper = "^3.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
