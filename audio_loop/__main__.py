@@ -4,7 +4,7 @@ import os
 import fire
 
 def audio_loop(audio_path: str):
-    pygame.init()
+    pygame.mixer.init()
 
     # Set the desired volume (0.0 to 1.0)
     volume = 0.5
